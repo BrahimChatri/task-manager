@@ -1,0 +1,33 @@
+{
+    "brahim": {
+        "user_info": {
+            "user_name": "brahim",
+            "password": "hash of a password"
+        },
+        "tasks": [
+            {
+                "task": "Go to school",
+                "completed": false,
+                "task_id": 1
+            },
+            {
+                "task": "shower",
+                "completed": false,
+                "task_id": 2
+            }
+        ]
+    },
+    "ali": {
+        "user_info": {
+            "user_name": "ali",
+            "password": "hash of a password"
+        },
+        "tasks": [
+            {
+                "task": "Shop",
+                "completed": false,
+                "task_id": 1
+            }
+        ]
+    }
+}

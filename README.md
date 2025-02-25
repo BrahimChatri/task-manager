@@ -32,8 +32,7 @@ This project is designed to strengthen my understanding of:
 │   │-- auth.py        # User authentication (login, signup)
 │
 │-- 📂 data/           # Stores user-related files (JSON, DB, etc.)
-│   │-- users.json     # Stores registered users
-│   │-- tasks.json     # Stores tasks (or can be per-user files)
+│   │-- users.json     # Stores all users data (tasks passwords ...)
 │
 │-- .gitignore
 │-- README.md
@@ -65,12 +64,14 @@ This project is designed to strengthen my understanding of:
    ```sh
    cd task-manager
    ```
-3. Run the CLI version:
+3. Install all Dependencies:
+    ```sh
+    pip install -r requirements.txt
+    ```
+4. Run the CLI version:
    ```sh
    python main.py
    ```
 
 ## 📜 License
 This project is for **educational purposes** and is open for contributions and feedback!
-
-

@@ -17,6 +17,60 @@ This project is designed to strengthen my understanding of:
 - Modular Code Structure
 - Best Practices in Python
 
+## 🛠️ Features (Planned)
+### ✅ CLI Version (First Phase)
+- User Authentication (Register/Login)
+- Add, View, Mark, and Delete Tasks
+- Task Management per User
+- Save & Load Tasks (JSON-Based)
+- Error Handling & Input Validation
+
+### 🎨 GUI Version (Second Phase)
+- Interactive UI for Task Management
+- Advanced User Authentication
+- Data Visualization (Task Progress, Deadlines)
+- Database Integration (Optional)
+## Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/BrahimChatri/task-manager.git
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd task-manager
+   ```
+3. (Optional) Create a virtual environment:
+   ```sh
+   python -m venv venv
+   ```
+   Activate the virtual environment:
+   - On Windows:
+     ```sh
+     venv\Scripts\activate
+     ```
+   - On macOS/Linux:
+     ```sh
+     source venv/bin/activate
+     ```
+4. Install required dependencies:
+   ```sh
+   pip install -r requirements.txt
+   ```
+
+## Usage
+
+Run the main script:
+```sh
+python main.py
+```
+Follow the on-screen instructions to login or register and manage tasks.
+
+## Future Enhancements
+- Adding a GUI using Tkinter
+- Task due dates and notifications
+- Enhanced data visualization
+
 ## 📂 Folder Structure
 ```
 📂 task_manager/
@@ -39,39 +93,6 @@ This project is designed to strengthen my understanding of:
 │-- main.py           # Entry point for the app
 │-- requirements.txt   
 ```
-
-
-## 🛠️ Features (Planned)
-### ✅ CLI Version (First Phase)
-- User Authentication (Register/Login)
-- Add, View, Mark, and Delete Tasks
-- Task Management per User
-- Save & Load Tasks (JSON-Based)
-- Error Handling & Input Validation
-
-### 🎨 GUI Version (Second Phase)
-- Interactive UI for Task Management
-- Advanced User Authentication
-- Data Visualization (Task Progress, Deadlines)
-- Database Integration (Optional)
-
-## 👨‍💻 How to Run
-1. Clone this repository:
-   ```sh
-   git clone https://github.com/BrahimChatri/task-manager.git
-   ```
-2. Navigate to the project directory:
-   ```sh
-   cd task-manager
-   ```
-3. Install all Dependencies:
-    ```sh
-    pip install -r requirements.txt
-    ```
-4. Run the CLI version:
-   ```sh
-   python main.py
-   ```
-
 ## 📜 License
-This project is for **educational purposes** and is open for contributions and feedback!
+This project is licensed under the MIT License.
+

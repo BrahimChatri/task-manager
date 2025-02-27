@@ -32,7 +32,7 @@ This project is designed to strengthen my understanding of:
 │   │-- auth.py        # User authentication (login, signup)
 │
 │-- 📂 data/           # Stores user-related files (JSON, DB, etc.)
-│   │-- users.json     # Stores all users data (tasks passwords ...)
+│   │-- data.json     # Stores all users data (tasks passwords ...)
 │
 │-- .gitignore
 │-- README.md

@@ -11,7 +11,7 @@ def task_count_decorator(func):
     return wrapper
 
 # Function to print text slowly
-def print_slow(text:str, delay=0.04):
+def print_slow(text:str, delay=0.06):
     for char in text:
         print(char, sep="",end="")
         time.sleep(delay)

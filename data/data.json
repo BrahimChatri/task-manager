@@ -1,32 +1,14 @@
 {
     "brahim": {
         "user_info": {
-            "user_name": "brahim",
-            "password": "hash of a password"
+            "name": "brahim",
+            "password": "$2b$12$xXDJQZmTkLtbR1jxjRPQreXIJ.VRpl/sIQ9NkWeg0HC2rfUlyu7QK"
         },
         "tasks": [
             {
-                "task": "Go to school",
+                "task": "go shoping",
                 "completed": false,
-                "task_id": 1
-            },
-            {
-                "task": "shower",
-                "completed": false,
-                "task_id": 2
-            }
-        ]
-    },
-    "ali": {
-        "user_info": {
-            "user_name": "ali",
-            "password": "hash of a password"
-        },
-        "tasks": [
-            {
-                "task": "Shop",
-                "completed": false,
-                "task_id": 1
+                "id": 1
             }
         ]
     }

@@ -1,56 +1,61 @@
 import json, os
 from typing import Any
-from utils.helpers import task_count_decorator
+from core.storage import Storage
 
-# Class to manage the Task manager
 class TaskManager:
-    def __init__(self,) -> None:
-        self.tasks:list[str|Any] = []
-
-    @task_count_decorator
-    def add_task(self, task: str) -> None:
-        task_dict = {"task": task, "completed": False,"task_id": len(self.tasks)+1}
-        self.tasks.append(task_dict)
-        print(f"Task added: {task}")
-    
-    def view_task(self) -> None:
-        for task in self.tasks:
-            print(f"{task['task_id']}. {task['task']} - {'Completed' if task['completed'] else 'Not completed'}")
-        
-    def mark_completed(self, task_id: int) -> None:
-        for task in self.tasks:
-            if task['task_id'] == task_id:
-                task['completed'] = True
-                print(f"Task {task_id} marked as completed.")
-                return
-        print(f"Task with ID {task_id} not found.")
-
-
-    def delet_task(self, task_id: int) -> None:
-        for task in self.tasks:
-            if task["task_id"] == int(task_id):
-                self.tasks.remove(task)
-                print(f"{task["task"]} has been removed successfully")
-                return
+    @staticmethod
+    def add_task(username: str, task_description: str) -> None:
+        data = Storage.load_data()
+        if username in data:
+            task_id = len(data[username]["tasks"]) + 1 
+            task = {"task": task_description, "completed": False, "id": task_id}
+            data[username]["tasks"].append(task)
+            Storage.save_data(data)
+            print(f"Task added for {username}.")
         else:
-            print("Task not found !")
+            print(f"User {username} not found.")
 
+    @staticmethod
+    def view_tasks(username: str) -> None:
+        data = Storage.load_data()
+        if username in data:
+            tasks = data[username]["tasks"]
+            if tasks:
+                print(f"Tasks for {username}:")
+                for task in tasks:
+                    status = "✅ Completed" if task["completed"] else "❌ Not Completed"
+                    print(f"{task['id']}: {task['task']} - {status}")
+            else:
+                print(f"{username} has no tasks.")
+        else:
+            print(f"User {username} not found.")
 
-    def save_tasks(self, filename:str) -> None:
-        tasks_json ={"tasks": self.tasks}
-        with open(filename,"w")as f:
-            json.dump(tasks_json,f , indent=4)
-            print(f"tasks saved to {filename} successfully ")
+    @staticmethod
+    def mark_task_completed(username: str, task_id: int) -> None:
+        data = Storage.load_data()
+        if username in data:
+            tasks = data[username]["tasks"]
+            for task in tasks:
+                if task["id"] == task_id:  # Fixed key name
+                    task["completed"] = True
+                    Storage.save_data(data)
+                    print(f"Task {task_id} for {username} marked as completed.")
+                    return
+            print(f"Task {task_id} not found for {username}.")
+        else:
+            print(f"User {username} not found.")
 
-    def load_tasks(self, filename:str) -> None:
-        if os.path.exists(filename):
-            with open(filename, "r") as f:
-                try:
-                    loaded_tasks = json.load(f)
-                    self.tasks=loaded_tasks["tasks"]
-                except json.JSONDecodeError:
-                    print("The tasks file is empty or corrupted. Starting with an empty task list.")
-                    self.tasks=[]
-        else :
-            self.tasks=[]
-            print("No task file found. Starting with an empty task list.")
+    @staticmethod
+    def delete_task(username: str, task_id: int) -> None:
+        data = Storage.load_data()
+        if username in data:
+            tasks = data[username]["tasks"]
+            new_tasks = [task for task in tasks if task["id"] != task_id]  # Remove task
+            if len(new_tasks) == len(tasks):
+                print(f"Task {task_id} not found for {username}.")
+                return
+            data[username]["tasks"] = new_tasks
+            Storage.save_data(data)
+            print(f"Task {task_id} deleted successfully for {username}.")
+        else:
+            print(f"User {username} not found.")

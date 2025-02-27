@@ -48,8 +48,6 @@ class AuthenticationManager:
         
         password_hash = data[username]["user_info"]["password"]
         if AuthenticationManager.compare_pass(password, password_hash):
-            print("Logged in successfully!")
             return True
         else:
-            print("Invalid password!")
             return False

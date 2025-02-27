@@ -9,6 +9,29 @@
                 "task": "go shoping",
                 "completed": false,
                 "id": 1
+            },
+            {
+                "task": "ganerate a new project",
+                "completed": false,
+                "id": 1
+            }
+        ]
+    },
+    "ali_ch": {
+        "user_info": {
+            "name": "ali",
+            "password": "$2b$12$mqWupRlPxGMGD5VnW71kPuC8Fw4CgJrGJ.TUuU0kFDDvU0OhYdJQq"
+        },
+        "tasks": [
+            {
+                "task": "Do homework",
+                "completed": false,
+                "id": 1
+            },
+            {
+                "task": "Learn python",
+                "completed": false,
+                "id": 2
             }
         ]
     }

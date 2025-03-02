@@ -1,9 +1,9 @@
 """This the main part of the task manager (UI part)"""
 
-from core.auth import AuthenticationManager
+from core.auth import AuthenticationManager, min_
 from core.storage import Storage
 from core.tasks import TaskManager
-
+import utils.logger
 # Track user after login
 current_user = ""
 
@@ -41,10 +41,10 @@ def handle_task_options(username):
                 else:
                     print("Invalid choice")
             case choice if choice.lower() == "q":
-                print("Goodbye")
+                utils.logger.Info_logger.info("Goodbye")
                 break
             case _:
-                print("Invalid choice")
+                utils.logger.Error_logger.error("Invalid choice")
 
 def main():
     """This function handles user input"""
@@ -56,32 +56,42 @@ def main():
         if choice == "1":
             username = input("Enter your username: ")
             if not username:
-                print("exiting due to lack of username")
-                return
+                utils.logger.Error_logger.error("exiting due to lack of username")
+                break
             password = input("Enter your password: ")
-            if not password or len(password):
-                print("exiting due to the password being too short")
-                return
+            if (not password) or (len(password) < min_):
+                utils.logger.Error_logger.error("exiting due to the password being too short")
+                break
             if AuthenticationManager.login_user(username, password):
                 global current_user
                 current_user = username
-                print("Logged in successfully!")
-                print(f"\nWelcome {username} ")
+                utils.logger.Info_logger.info("Logged in successfully!")
+                utils.logger.Info_logger.info(f"\nWelcome {username} ")
                 handle_task_options(username)
             else:
-                print("Invalid credentials")
-
+                utils.logger.Error_logger.error("Invalid credentials")
+                break
         elif choice == "2":
             username = input("Enter your username: ")
+            if not username:
+                utils.logger.Error_logger.error("exiting due to lack of username")
+                break
             password = input("Enter your password: ")
+            if (not password) or (len(password) < min_):
+                utils.logger.Error_logger.error("exiting due to the password being too short")
+                break
             name = input("Enter your name: ")
+            if not name:
+                utils.logger.Error_logger.error("exiting due to lack of name")
+                break
             AuthenticationManager.register_user(username, password, name)
 
         elif choice.lower() == "q":
-            print("Goodbye")
+            utils.logger.Info_logger.info("Goodbye")
             break
         else:
-            print("Invalid choice")
+            utils.logger.Error_logger.error("Invalid choice")
+            break
 
 if __name__ == "__main__":
     main()

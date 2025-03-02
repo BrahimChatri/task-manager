@@ -2,6 +2,7 @@ import json
 import os
 import csv
 from typing import Any
+import utils.logger as logger
 
 class Storage:
     @staticmethod
@@ -13,9 +14,9 @@ class Storage:
                 try:
                     return json.load(f)
                 except json.JSONDecodeError:
-                    print("The users file is empty or corrupted. Starting with an empty user list.")
+                    logger.Error_logger.error("The users file is empty or corrupted. Starting with an empty user list.")
                     return {}
-        print("No user file found. Starting with an empty user list.")
+        logger.Info_logger.info("No user file found. Starting with an empty user list.")
         return {}
 
     @staticmethod
@@ -26,16 +27,16 @@ class Storage:
         try:
             with open(file_path, "w", encoding="utf-8") as f:
                 json.dump(user_data, f, indent=4)
-            print("Data saved successfully.")
+            logger.Info_logger.info("Data saved successfully.")
         except OSError:
-            print("Couldn't save the data")
+            logger.Error_logger.error("Couldn't save the data")
 
     @staticmethod
     def export_data(username: str, formate: str) -> None:
         """Export user tasks to CSV or JSON format."""
         data = Storage.load_data()
         if username not in data:
-            print(f"User '{username}' not found!")
+            logger.Error_logger.error(f"User '{username}' not found!")
             return
         tasks = data[username]["tasks"]
         file_path = f"{username}.{formate.lower()}"
@@ -47,14 +48,14 @@ class Storage:
                     writer.writerow(["task", "completed", "task_id"])
                     for task in tasks:
                         writer.writerow([task["task"], task["completed"], task["task_id"]])
-                print(f"Tasks exported successfully to {file_path}")
+                logger.Info_logger.info(f"Tasks exported successfully to {file_path}")
 
             elif formate.upper() == "JSON":
                 with open(file_path, "w", encoding='utf-8') as file:
                     json.dump(tasks, file, indent=4)
-                print(f"Tasks exported successfully to {file_path}")
+                logger.Info_logger.info(f"Tasks exported successfully to {file_path}")
 
             else:
-                print("Invalid file type! Use 'CSV' or 'JSON'.")
+                logger.Error_logger.error("Invalid file type! Use 'CSV' or 'JSON'.")
         except OSError:
-            print("try again another time")
+            logger.Error_logger.error("OSerror while exporting data")

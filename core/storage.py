@@ -31,7 +31,7 @@ class Storage:
             print("Couldn't save the data")
 
     @staticmethod
-    def export_data(username: str, formate: str):
+    def export_data(username: str, formate: str) -> None:
         """Export user tasks to CSV or JSON format."""
         data = Storage.load_data()
         if username not in data:

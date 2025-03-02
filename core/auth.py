@@ -1,13 +1,14 @@
 from core.storage import Storage
 import bcrypt
 
+min_: int = 6
+
 class AuthenticationManager:
     def __init__(self):
         pass
 
     @staticmethod
     def hash_pass(password: str) -> str:
-        min_: int = 6
         try:
             if not password or len(password) < min_:  # You can set a minimum password length
                 print(f"Password must be at least {min_} characters long")
@@ -33,6 +34,7 @@ class AuthenticationManager:
         
     @staticmethod
     def register_user(username: str, password: str, name: str,) -> None:
+        """Registering function"""
         data = Storage.load_data()
         if username in data:
             print("Username already exists.")
@@ -43,6 +45,7 @@ class AuthenticationManager:
             
     @staticmethod
     def login_user(username: str, password: str) -> bool:
+        """Login handler"""
         data = Storage.load_data()
 
         if username not in data:
@@ -52,4 +55,5 @@ class AuthenticationManager:
         password_hash = data[username]["user_info"]["password"]
         if AuthenticationManager.compare_pass(password, password_hash):
             return True
+
         return False

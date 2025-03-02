@@ -46,7 +46,6 @@ def handle_task_options(username):
             case _:
                 print("Invalid choice")
 
-
 def main():
     """This function handles user input"""
     while True:
@@ -56,7 +55,13 @@ def main():
         choice = input("Enter your choice: ")
         if choice == "1":
             username = input("Enter your username: ")
+            if not username:
+                print("exiting due to lack of username")
+                return
             password = input("Enter your password: ")
+            if not password or len(password):
+                print("exiting due to the password being too short")
+                return
             if AuthenticationManager.login_user(username, password):
                 global current_user
                 current_user = username
@@ -77,7 +82,6 @@ def main():
             break
         else:
             print("Invalid choice")
-
 
 if __name__ == "__main__":
     main()

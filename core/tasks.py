@@ -5,7 +5,7 @@ class TaskManager:
     def add_task(username: str, task_description: str) -> None:
         data = Storage.load_data()
         if username in data:
-            task_id = len(data[username]["tasks"]) + 1 
+            task_id = len(data[username]["tasks"]) + 1
             task = {"task": task_description, "completed": False, "id": task_id}
             data[username]["tasks"].append(task)
             Storage.save_data(data)

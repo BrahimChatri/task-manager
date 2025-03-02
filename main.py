@@ -1,54 +1,59 @@
+"""This the main part of the task manager (UI part)"""
+
 from core.auth import AuthenticationManager
 from core.storage import Storage
 from core.tasks import TaskManager
-from util.helpers import print_slow
 
 # Track user after login
 current_user = ""
+
 
 def handle_task_options(username):
     """Handles task management options after successful login."""
     while True:
         print("What would you like to do?\n")
-        print("1. Add Task\n2. View Task\n3. Mark Task as completed\n4. Delete Task\n5. Export tasks\nQ. Exit\n")
+        print(
+            "1. Add Task\n2. View Task\n3. Mark Task as completed\n4. Delete Task\n5. Export tasks\nQ. Exit\n"
+        )
         choice = input("Enter your choice: ")
-        
-        if choice == "1":
-            task = input("Enter your task: ")
-            TaskManager.add_task(username, task)
-        elif choice == "2":
-            TaskManager.view_tasks(username)
-        elif choice == "3":
-            task_id = input("Enter task ID: ")
-            TaskManager.mark_task_completed(username, task_id)
-        elif choice == "4":
-            task_id = input("Enter task ID: ")
-            TaskManager.delete_task(username, task_id)
-        elif choice == "5":
-            print("1. JSON or 2. CSV\nQ. Exit\n")
-            choice = input("Enter your choice: ")
-            if choice == "1":
-                Storage.export_data(username, format="json")
-            elif choice == "2":
-                Storage.export_data(username, format="csv")
-            elif choice.lower() == "q":
+        match choice:
+            case "1":
+                task = input("Enter your task: ")
+                TaskManager.add_task(username, task)
+            case "2":
+                TaskManager.view_tasks(username)
+            case "3":
+                task_id = input("Enter task ID: ")
+                TaskManager.mark_task_completed(username, task_id)
+            case "4":
+                task_id = input("Enter task ID: ")
+                TaskManager.delete_task(username, task_id)
+            case "5":
+                print("1. JSON or 2. CSV\nQ. Exit\n")
+                choice = input("Enter your choice: ")
+                if choice == "1":
+                    Storage.export_data(username, formate="json")
+                elif choice == "2":
+                    Storage.export_data(username, formate="csv")
+                elif choice.lower() == "q":
+                    print("Goodbye")
+                    break
+                else:
+                    print("Invalid choice")
+            case choice if choice.lower() == "q":
                 print("Goodbye")
                 break
-            else:
+            case _:
                 print("Invalid choice")
-        elif choice.lower() == "q":
-            print("Goodbye")
-            break
-        else:
-            print("Invalid choice")
+
 
 def main():
+    """This function handles user input"""
     while True:
         print("Hello, Welcome to Task Manager\n")
         print("----------------------------------------")
         print("1. Login\n2. Register\nQ. Exit\n")
         choice = input("Enter your choice: ")
-        
         if choice == "1":
             username = input("Enter your username: ")
             password = input("Enter your password: ")
@@ -72,6 +77,7 @@ def main():
             break
         else:
             print("Invalid choice")
+
 
 if __name__ == "__main__":
     main()

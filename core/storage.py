@@ -4,6 +4,7 @@ import csv
 from typing import Any
 import utils.logger as logger
 
+
 class Storage:
     @staticmethod
     def load_data() -> dict[str, Any]:
@@ -14,7 +15,9 @@ class Storage:
                 try:
                     return json.load(f)
                 except json.JSONDecodeError:
-                    logger.Error_logger.error("The users file is empty or corrupted. Starting with an empty user list.")
+                    logger.Error_logger.error(
+                        "The users file is empty or corrupted. Starting with an empty user list."
+                    )
                     return {}
         logger.Info_logger.info("No user file found. Starting with an empty user list.")
         return {}
@@ -43,15 +46,17 @@ class Storage:
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         try:
             if formate.upper() == "CSV":
-                with open(file_path, "w", newline="", encoding='utf-8') as file:
+                with open(file_path, "w", newline="", encoding="utf-8") as file:
                     writer = csv.writer(file)
                     writer.writerow(["task", "completed", "task_id"])
                     for task in tasks:
-                        writer.writerow([task["task"], task["completed"], task["task_id"]])
+                        writer.writerow(
+                            [task["task"], task["completed"], task["task_id"]]
+                        )
                 logger.Info_logger.info(f"Tasks exported successfully to {file_path}")
 
             elif formate.upper() == "JSON":
-                with open(file_path, "w", encoding='utf-8') as file:
+                with open(file_path, "w", encoding="utf-8") as file:
                     json.dump(tasks, file, indent=4)
                 logger.Info_logger.info(f"Tasks exported successfully to {file_path}")
 

@@ -4,6 +4,7 @@ from core.auth import AuthenticationManager, min_
 from core.storage import Storage
 from core.tasks import TaskManager
 import utils.logger
+
 # Track user after login
 current_user = ""
 
@@ -46,6 +47,7 @@ def handle_task_options(username):
             case _:
                 utils.logger.Error_logger.error("Invalid choice")
 
+
 def main():
     """This function handles user input"""
     while True:
@@ -60,7 +62,9 @@ def main():
                 break
             password = input("Enter your password: ")
             if (not password) or (len(password) < min_):
-                utils.logger.Error_logger.error("exiting due to the password being too short")
+                utils.logger.Error_logger.error(
+                    "exiting due to the password being too short"
+                )
                 break
             if AuthenticationManager.login_user(username, password):
                 global current_user
@@ -78,7 +82,9 @@ def main():
                 break
             password = input("Enter your password: ")
             if (not password) or (len(password) < min_):
-                utils.logger.Error_logger.error("exiting due to the password being too short")
+                utils.logger.Error_logger.error(
+                    "exiting due to the password being too short"
+                )
                 break
             name = input("Enter your name: ")
             if not name:
@@ -92,6 +98,7 @@ def main():
         else:
             utils.logger.Error_logger.error("Invalid choice")
             break
+
 
 if __name__ == "__main__":
     main()

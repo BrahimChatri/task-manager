@@ -1,6 +1,7 @@
 from core.storage import Storage
 import utils.logger as logger
 
+
 class TaskManager:
     @staticmethod
     def add_task(username: str, task_description: str) -> None:
@@ -55,6 +56,8 @@ class TaskManager:
                 return
             data[username]["tasks"] = new_tasks
             Storage.save_data(data)
-            logger.Info_logger.info(f"Task {task_id} deleted successfully for {username}.")
+            logger.Info_logger.info(
+                f"Task {task_id} deleted successfully for {username}."
+            )
         else:
             logger.Error_logger.error(f"User {username} not found.")

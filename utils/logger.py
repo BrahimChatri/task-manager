@@ -1,8 +1,9 @@
 """Module for logging handling"""
+
 import logging
 
 logging_format = logging.Formatter("[%(asctime)s | %(name)s] %(message)s")
-second_format = logging.Formatter("%(message)s")
+second_format = logging.Formatter("-> %(message)s")
 Log_handler = logging.FileHandler("logs.log")
 Stream_handler = logging.StreamHandler()
 Stream_handler.setFormatter(second_format)

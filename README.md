@@ -76,17 +76,15 @@ Follow the on-screen instructions to login or register and manage tasks.
 📂 task_manager/
 │-- 📂 utils/          # Utility functions (printing, logging, validation)
 │   │-- __init__.py    
-│   │-- helpers.py     # General utility functions (print_slow, etc.)
 │   │-- logger.py      # Handles logging (errors, activity)
 │
 │-- 📂 core/           # Core functionality of the task manager
+│    |-- 📂 data/           # Stores user-related files (JSON, DB, etc.)
+│         │-- data.json     # Stores all users data (tasks passwords ...)
 │   │-- __init__.py
 │   │-- tasks.py       # Task management (add, delete, update, etc.)
 │   │-- storage.py     # File handling (JSON, CSV, or DB storage)
 │   │-- auth.py        # User authentication (login, signup)
-│
-│-- 📂 data/           # Stores user-related files (JSON, DB, etc.)
-│   │-- data.json     # Stores all users data (tasks passwords ...)
 │
 │-- .gitignore
 │-- README.md

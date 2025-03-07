@@ -1,7 +1,7 @@
 # Task Manager - Python Learning Project
 
 ## 🚀 About the Project
-This is a **Task Manager** project built as part of my learning journey in Python. The goal is to enhance my skills in **OOP, decorators, file handling, authentication**, and other advanced Python concepts.
+This is a **Task Manager** project built as part of my learning journey in Python. The goal is to enhance my skills in **OOP, decorators, file handling, authentication**, and other advanced Python concepts. Also part of Roadmap.sh project https://roadmap.sh/projects/task-tracker
 
 The project will be developed in **two versions**:
 1. **CLI Version** (First Phase) - A command-line interface for managing tasks.

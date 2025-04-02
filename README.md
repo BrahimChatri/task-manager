@@ -18,18 +18,18 @@ This project is designed to strengthen my understanding of:
 - Best Practices in Python
 
 ## 🛠️ Features (Planned)
-### ✅ CLI Version (First Phase)
+### ✅ CLI Version 
 - User Authentication (Register/Login)
 - Add, View, Mark, and Delete Tasks
 - Task Management per User
 - Save & Load Tasks (JSON-Based)
 - Error Handling & Input Validation
 
-### 🎨 GUI Version (Second Phase)
+### 🎨 GUI Version 
 - Interactive UI for Task Management
 - Advanced User Authentication
 - Data Visualization (Task Progress, Deadlines)
-- Database Integration (Optional)
+- **[check it out](https://github.com/BrahimChatri/Task-manager-flask)**
 ## Installation
 
 1. Clone the repository:
